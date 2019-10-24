@@ -10,6 +10,8 @@ const SweetPanelContainer = styled.div`
   width: 1000px;
   height: 600px;
   background-color: #f7f7f7;
+  display: flex;
+  justify-content: space-between;
 `
 
 export const SweetPanel: React.FC = () => {

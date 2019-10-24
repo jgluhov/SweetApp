@@ -16,7 +16,12 @@ export const flags = [
 ]
 
 export class Item {
-  constructor(public name = '', flags: Flag[] = []) {
+  id: string;
+  constructor(
+    public name = '',
+    public flags: Flag[] = []
+  ) {
+    this.id = Math.random().toString(36).substring(2, 15)
   }
 }
 
