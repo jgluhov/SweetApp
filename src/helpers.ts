@@ -1,4 +1,8 @@
 import faker from 'faker';
+import { MdBrightnessLow } from 'react-icons/md';
+import { FiSun } from 'react-icons/fi';
+import { TiFlash } from 'react-icons/ti';
+import { FaHeart } from 'react-icons/fa';
 
 export enum FlagTypes {
   FLOWER, HEART, SUN, FLASH
@@ -16,6 +20,13 @@ export const flags = [
   FlagTypes.SUN,
   FlagTypes.FLASH
 ]
+
+export const flagIconsMap = {
+  [FlagTypes.FLOWER]: MdBrightnessLow,
+  [FlagTypes.SUN]: FiSun,
+  [FlagTypes.FLASH]: TiFlash,
+  [FlagTypes.HEART]: FaHeart
+}
 
 export class Item {
   id: string;

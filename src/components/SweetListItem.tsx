@@ -1,10 +1,6 @@
 import React from 'react';
-import { Item } from 'src/helpers';
+import { Item, flagIconsMap } from 'src/helpers';
 import styled from 'styled-components';
-import { FaHeart } from 'react-icons/fa';
-import { FiSun } from 'react-icons/fi';
-import { MdBrightnessLow } from 'react-icons/md';
-import { TiFlash } from 'react-icons/ti';
 
 const SweetListItemContainer = styled.div`
   background-color: #d3f8a3;
@@ -48,10 +44,10 @@ const SweetListItem: React.FC<SweetListItemProps> = ({ item }) => {
     <SweetListItemContainer>
       <SweetListItemContent>{ item.name }</SweetListItemContent>
       <SweetListIconsContainer>
-        <StyledIcon><FaHeart /></StyledIcon>
-        <StyledIcon><FiSun /></StyledIcon>
-        <StyledIcon><MdBrightnessLow /></StyledIcon>
-        <StyledIcon><TiFlash /></StyledIcon>
+        {item.flags.map((itemFlag, idx) => {
+          const Icon = flagIconsMap[itemFlag];
+          return <StyledIcon key={idx}><Icon /></StyledIcon>
+        })}
       </SweetListIconsContainer>
     </SweetListItemContainer>
   )
