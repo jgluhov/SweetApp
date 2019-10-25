@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import IconCheckbox from './IconCheckbox';
 import { Flag, FlagTypes, flagIconsMap } from 'src/helpers';
@@ -29,12 +29,17 @@ const IconCheckboxStyled = styled(IconCheckbox)`
   }
 `
 
-const SweetListFlagsFilter: React.FC = () => {
-  const [filterByFlag, setFilterByFlag] = useState();
+interface SweetListFlagsFilterProps {
+  changeFlagBy: (flag: Flag) => void;
+  flagBy: Flag;
+}
 
-  const isChecked = (byFlag: Flag) => byFlag === filterByFlag;
+const SweetListFlagsFilter: React.FC<SweetListFlagsFilterProps> = ({ flagBy, changeFlagBy }) => {
+  
+
+  const isChecked = (flag: Flag) => flag === flagBy;
   const handleFlagClick = (flag: FlagTypes) => {
-    setFilterByFlag(flag);
+    changeFlagBy(flag);
   }
 
   return (

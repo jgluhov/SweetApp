@@ -1,6 +1,7 @@
 import React from 'react';
-import { Item, flagIconsMap } from 'src/helpers';
+import { Item } from 'src/helpers';
 import styled from 'styled-components';
+import ItemFlags from './ItemFlags';
 
 const SweetListItemContainer = styled.div`
   background-color: #d3f8a3;
@@ -23,32 +24,16 @@ const SweetListItemContent = styled.div`
   white-space: nowrap;
 `
 
-const SweetListIconsContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  color: red;
-`
+type SweetListItemProps = {
+  item: Item,
+  selectItem: (item: Item) => void;
+};
 
-const StyledIcon = styled.i`
-  display: flex;
-  :not(:last-child) {
-    margin-right: 2px;
-  }
-`
-
-type SweetListItemProps = { item: Item };
-
-const SweetListItem: React.FC<SweetListItemProps> = ({ item }) => {
+const SweetListItem: React.FC<SweetListItemProps> = ({ item, selectItem }) => {
   return (
-    <SweetListItemContainer>
+    <SweetListItemContainer onClick={selectItem.bind(null, item)}>
       <SweetListItemContent>{ item.name }</SweetListItemContent>
-      <SweetListIconsContainer>
-        {item.flags.map((itemFlag, idx) => {
-          const Icon = flagIconsMap[itemFlag];
-          return <StyledIcon key={idx}><Icon /></StyledIcon>
-        })}
-      </SweetListIconsContainer>
+      <ItemFlags item={item} />
     </SweetListItemContainer>
   )
 }

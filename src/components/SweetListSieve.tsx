@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const SweetListSieveForm = styled.form`
@@ -23,19 +23,24 @@ export enum SortTypes {
   DESC = 'desc'
 }
 
-const SweetListSieve: React.FC = () => {
-  const [sort, setSort] = useState(SortTypes.ASC);
-  const [term, setTerm] = useState('');
+interface SweetListSieveProps {
+  sortBy: SortTypes;
+  filterBy: string;
+  changeSort: (changedSort: SortTypes) => void;
+  changeTerm: (changedTerm: string) => void;
+}
 
+const SweetListSieve: React.FC<SweetListSieveProps> = ({changeSort, changeTerm, sortBy, filterBy }) => {
   const handleSortChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const changedSort = evt.target.checked ? SortTypes.ASC : SortTypes.DESC;
-    setSort(changedSort);
+    changeSort(changedSort);
   }
 
-  const isChecked = () => sort === SortTypes.ASC;
+  const isChecked = () => sortBy === SortTypes.ASC;
 
   const handleChangeTerm = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    setTerm(evt.target.value);
+    const changedTerm = evt.target.value;
+    changeTerm(changedTerm);
   }
   
   return (
@@ -49,7 +54,7 @@ const SweetListSieve: React.FC = () => {
       </label>
       <label>
         <SweetListSieveInput type="text"
-          value={term}
+          value={filterBy}
           placeholder="Search"
           onChange={handleChangeTerm} />
       </label>
