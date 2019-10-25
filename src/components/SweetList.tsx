@@ -8,8 +8,9 @@ type SweetListProps = { items: Item[] };
 const SweetListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  flex-basis: 30%;
+  width: 30%;
   background-color: #7e9cd2;
+  padding: 16px;
 `
 
 const SweetListHeader = styled.div`
@@ -19,13 +20,13 @@ const SweetListHeader = styled.div`
 const SweetListContent = styled.div`
   flex: 1;
   overflow: auto;
-  padding: 16px;
 `
 
-const SweetList: React.FC<SweetListProps> = ({ items }) => {
+const SweetList: React.FC<SweetListProps> = ({ items, children }) => {
   return (
     <SweetListContainer>
       <SweetListHeader>
+       { children }
       </SweetListHeader>
       <SweetListContent>
         { items.map(item => <SweetListItem key={item.id} item={item} />) }
