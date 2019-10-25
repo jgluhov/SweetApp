@@ -9,6 +9,7 @@ const SweetListContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-basis: 30%;
+  background-color: #7e9cd2;
 `
 
 const SweetListHeader = styled.div`
@@ -18,6 +19,7 @@ const SweetListHeader = styled.div`
 const SweetListContent = styled.div`
   flex: 1;
   overflow: auto;
+  padding: 16px;
 `
 
 const SweetList: React.FC<SweetListProps> = ({ items }) => {

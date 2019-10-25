@@ -1,3 +1,5 @@
+import faker from 'faker';
+
 export enum FlagTypes {
   FLOWER, HEART, SUN, FLASH
 }
@@ -34,7 +36,7 @@ export const generateItems = (max: number) => {
     .fill(0)
     .reduce((items) => {
       const flagsCount = randomNumber(0, flags.length);
-      return items.concat( new Item('item', flags.slice(0, flagsCount)));
+      return items.concat( new Item(faker.random.word(), flags.slice(0, flagsCount)));
     }, []);
 }
 
